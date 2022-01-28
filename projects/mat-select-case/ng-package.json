@@ -1,6 +1,7 @@
 {
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/mat-select-case",
+  "assets": ["./src/lib/styles/mat-select-case.styles.css"],
   "lib": {
     "entryFile": "src/public-api.ts"
   }
