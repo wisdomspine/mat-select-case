@@ -1,6 +1,7 @@
-# NgxMatSelect
+# MatSelectCase
 
-**_This is a fork of [NgxMatSelect by alireza-sohrabi](https://github.com/alireza-sohrabi/ngx-mat-select)_**
+**_This was forked from [NgxMatSelect by alireza-sohrabi](https://github.com/alireza-sohrabi/ngx-mat-select) with some modifications_**
+
 SearchBox, infinite Scroll and Mobile View are embedded into Angular Material Select Component.
 
 This library was generated for Angular Material to improve select component (mat-select). In this library, I defined a
@@ -23,75 +24,83 @@ stackblitz</a>
 
 # Installation Guide
 
-The first step is adding ngx-mat-select.styles in angular.json
+The first step is adding mat-select-case.styles in angular.json
 
+```
 "styles": [
 
-"./node_modules/ngx-mat-select/styles/ngx-mat-select.styles.css"
+"./node_modules/mat-select-case/src/lib/styles/mat-select-case.styles.css"
 
 ],
+```
 
-The second step is adding NgxMatSelectModule into your Module
+The second step is adding MatSelectCaseModule into your Module
 
+```
 import {MatSelectModule} from "@angular/material/select";
 
-import {NgxMatSelectModule} from "ngx-mat-select";
+import {MatSelectCaseModule} from "mat-select-case";
 
 ...
 
 @NgModule({
 
-imports: [
+    imports: [
 
-...
+    ...
 
-MatSelectModule,
+    MatSelectModule,
 
-NgxMatSelectModule
+    MatSelectCaseModule
 
-...
+    ...
 
-]
+    ]
 
 })
+```
 
 you can define global default configs for root:
 
-NgxMatSelectModule.forRoot({
+```
+MatSelectCaseModule.forRoot({
 
-maxWidthForMobileView: 600,
+    maxWidthForMobileView: 600,
 
-inFirstLoadCallSearcher: true,
+    inFirstLoadCallSearcher: true,
 
-inFirstLoadSearcherValue: '',
+    inFirstLoadSearcherValue: '',
 
-emptyLabel: 'no entry found',
+    emptyLabel: 'no entry found',
 
-noMoreResultLabel: 'no more found',
+    noMoreResultLabel: 'no more found',
 
-useInfiniteScroll: false,
+    useInfiniteScroll: false,
 
-searchBoxPlaceholder: 'please search',
+    searchBoxPlaceholder: 'please search',
 
-maximumResultForShow: 40,
+    maximumResultForShow: 40,
 
-useMobileView: false,
+    useMobileView: false,
 
-valueMember: 'key',
+    valueMember: 'key',
 
-displayMember: 'value',
+    displayMember: 'value',
 
-mobileViewType: 'FullScreen'
+    mobileViewType: 'FullScreen'
 
 })
+```
 
-or using token (NGX_MAT_SELECT_CONFIGS) in providers:
+or using token (MAT_SELECT_CASE_CONFIGS) in providers:
 
+```
 providers: [
 
-{provide: NGX_MAT_SELECT_CONFIGS, useValue: ngxMatSelectConfigs}
+{provide: MAT_SELECT_CASE_CONFIGS, useValue: matSelectCaseConfigs}
 
 ],
+```
 
 # Samples
 
@@ -99,223 +108,229 @@ providers: [
 
 Template:
 
+```
 <mat-form-field>
 
-<mat-select
+    <mat-select
 
-ngxMatSelect
+        matSelectCase
 
-[hasSearchBox]="true"
+        [hasSearchBox]="true"
 
-[useMobileView]="true"
+        [useMobileView]="true"
 
-mobileViewType="BottomSheet"
+        mobileViewType="BottomSheet"
 
-[(ngModel)]="bankValue"
+        [(ngModel)]="bankValue"
 
-[multiple]="false"
+        [multiple]="false"
 
-name="bank"
+        name="bank"
 
-[required]="true"
+        [required]="true"
 
-[source]="source"
+        [source]="source"
 
-[displayMember]="'value'"
+        [displayMember]="'value'"
 
-[valueMember]="'key'"
+        [valueMember]="'key'"
 
-#sf="ngxMatSelect"
+        #sf="matSelectCase"
 
->
+    >
 
-<mat-option [value]="option" \*ngFor="let option of sf.filteredSource">
+        <mat-option [value]="option" \*ngFor="let option of sf.filteredSource">
 
-{{option.value}}
+            {{option.value}}
 
-</mat-option>
+        </mat-option>
 
-</mat-select>
+    </mat-select>
 
 </mat-form-field>
+```
 
 component.ts:
 
+```
 export class MyComponent implements OnInit {
 
-bankValue = {key: 50, value: 'Bank_50'};
+    bankValue = {key: 50, value: 'Bank_50'};
 
-source: any[] = [];
+    source: any[] = [];
 
-ngOnInit(): void {
+    ngOnInit(): void {
 
-for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 100; i++) {
+            this.source.push({value: 'Bank_' + i, key: i})
+        }
 
-this.source.push({value: 'Bank\_' + i, key: i})
-
-}
-
-}
+    }
 
 }
+```
 
-<b>Client Side Search ( FullScreen View In Mobile) </b>
+**Client Side Search ( FullScreen View In Mobile)**
 
 Template:
 
+```
 <mat-form-field>
 
-<mat-select
+    <mat-select
 
-ngxMatSelect
+        matSelectCase
 
-[hasSearchBox]="true"
+        [hasSearchBox]="true"
 
-[useMobileView]="true"
+        [useMobileView]="true"
 
-mobileViewType="FullScreen"
+        mobileViewType="FullScreen"
 
-[(ngModel)]="bankValue"
+        [(ngModel)]="bankValue"
 
-[multiple]="true"
+        [multiple]="true"
 
-name="bank"
+        name="bank"
 
-[required]="true"
+        [required]="true"
 
-[source]="source"
+        [source]="source"
 
-[displayMember]="'value'"
+        [displayMember]="'value'"
 
-[valueMember]="'key'"
+        [valueMember]="'key'"
 
-#sf="ngxMatSelect"
+        #sf="matSelectCase"
 
->
+    >
 
-<mat-option [value]="option" \*ngFor="let option of sf.filteredSource">
+        <mat-option [value]="option" \*ngFor="let option of sf.filteredSource">
 
-{{option.value}}
+            {{option.value}}
 
-</mat-option>
+        </mat-option>
 
-</mat-select>
+    </mat-select>
 
 </mat-form-field>
+```
 
 component.ts:
 
+```
 export class MyComponent implements OnInit {
 
-bankValue = [{key: 10, value: 'Bank_10'},{key: 75, value: 'Bank_75'}];
+    bankValue = [{key: 10, value: 'Bank_10'},{key: 75, value: 'Bank_75'}];
 
-source: any[] = [];
+    source: any[] = [];
 
-ngOnInit(): void {
+    ngOnInit(): void {
 
-for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 100; i++) {
 
-this.source.push({value: 'Bank\_' + i, key: i})
+         this.source.push({value: 'Bank\_' + i, key: i})
 
+        }
+
+    }
 }
+```
 
-}
-
-}
-
-<b>Server Side Search </b>
+**Server Side Search**
 
 Template:
 
+```
 <mat-form-field>
 
-<mat-select
+    <mat-select
 
-ngxMatSelect
+        matSelectCase
 
-[lazyLoad]="true"
+        [lazyLoad]="true"
 
-[searcher]="bankSearcher.bind(this)"
+        [searcher]="bankSearcher.bind(this)"
 
-[hasSearchBox]="true"
+        [hasSearchBox]="true"
 
-[useMobileView]="true"
+        [useMobileView]="true"
 
-mobileViewType="FullScreen"
+        mobileViewType="FullScreen"
 
-[(ngModel)]="bankValue"
+        [(ngModel)]="bankValue"
 
-[multiple]="true"
+        [multiple]="true"
 
-name="bank"
+        name="bank"
 
-[required]="true"
+        [required]="true"
 
-[source]="source"
+        [source]="source"
 
-[displayMember]="'value'"
+        [displayMember]="'value'"
 
-[valueMember]="'key'"
+        [valueMember]="'key'"
 
-#sf="ngxMatSelect"
+        #sf="matSelectCase"
+    >
 
->
+        <mat-option [value]="option" \*ngFor="let option of sf.filteredSource">
 
-<mat-option [value]="option" \*ngFor="let option of sf.filteredSource">
+         {{option.value}}
 
-{{option.value}}
+        </mat-option>
 
-</mat-option>
-
-</mat-select>
+    </mat-select>
 
 </mat-form-field>
+```
 
 component.ts:
 
+```
 import {Observable} from "rxjs";
 
 import {of} from 'rxjs';
 
 export class MyComponent implements OnInit {
 
-bankValue = [{key: 10, value: 'Bank_10'},{key: 75, value: 'Bank_75'}];
+    bankValue = [{key: 10, value: 'Bank_10'},{key: 75, value: 'Bank_75'}];
 
-source: any[] = [];
+    source: any[] = [];
 
-ngOnInit(): void {
+    ngOnInit(): void {
 
-for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 100; i++) {
 
-this.source.push({value: 'Bank\_' + i, key: i})
+         this.source.push({value: 'Bank\_' + i, key: i})
+
+        }
+
+    }
+
+    // server side mock search by 'of Observable'
+    bankSearcher = (search: string, pageNumber: number, pageSize: number): Observable<any[]> => {
+
+        return of(this.source.filter(w => w.value.includes(search)));
+
+    }
 
 }
+```
 
-}
+## Input Properties
 
-// server side mock search by 'of Observable'
-
-bankSearcher = (search: string, pageNumber: number, pageSize: number): Observable<any[]> => {
-
-return of(this.source.filter(w => w.value.includes(search)));
-
-}
-
-}
-
-# Input Properties
-
-<table  >
+<table >
 
 <thead>
 
-<th>Property</th>
-
-<th>Default Value</th>
-
-<th>Options</th>
-
-<th>Description</th>
+<tr>
+    <th>Property</th>
+    <th>Default Value</th>
+    <th>Options</th>
+    <th>Description</th>
+</tr>
 
 </thead>
 
@@ -463,7 +478,7 @@ less than value of maxWidthForMobileView,
 
 <td>any[]</td>
 
-<td>filtered data(you receive filtered records from 'NgxMatSelect' directive)</td>
+<td>filtered data(you receive filtered records from 'MatSelectCase' directive)</td>
 
 </tr>
 
@@ -471,7 +486,7 @@ less than value of maxWidthForMobileView,
 
 <td>searcher</td>
 
-<td>(search: string, pageNumber: number, pageSize: number) => Observable<[]></td>
+<td>(search: string, pageNumber: number, pageSize: number => Observable<[]></td>
 
 <td>Function</td>
 
@@ -539,9 +554,10 @@ less than value of maxWidthForMobileView,
 
 </tr>
 
+<tr>
 <td>caseSensitiveSearch</td>
 
-<td  >false</td>
+<td>false</td>
 
 <td>boolean</td>
 

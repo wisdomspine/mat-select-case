@@ -1,4 +1,4 @@
-# NgxMatSelect
+# MatSelectCase
 
 **_This was forked from [NgxMatSelect by alireza-sohrabi](https://github.com/alireza-sohrabi/ngx-mat-select) with some modifications_**
 
@@ -24,22 +24,22 @@ stackblitz</a>
 
 # Installation Guide
 
-The first step is adding ngx-mat-select.styles in angular.json
+The first step is adding mat-select-case.styles in angular.json
 
 ```
 "styles": [
 
-"./node_modules/ngx-mat-select/styles/ngx-mat-select.styles.css"
+"./node_modules/mat-select-case/src/lib/styles/mat-select-case.styles.css"
 
 ],
 ```
 
-The second step is adding NgxMatSelectModule into your Module
+The second step is adding MatSelectCaseModule into your Module
 
 ```
 import {MatSelectModule} from "@angular/material/select";
 
-import {NgxMatSelectModule} from "ngx-mat-select";
+import {MatSelectCaseModule} from "mat-select-case";
 
 ...
 
@@ -51,7 +51,7 @@ import {NgxMatSelectModule} from "ngx-mat-select";
 
     MatSelectModule,
 
-    NgxMatSelectModule
+    MatSelectCaseModule
 
     ...
 
@@ -63,7 +63,7 @@ import {NgxMatSelectModule} from "ngx-mat-select";
 you can define global default configs for root:
 
 ```
-NgxMatSelectModule.forRoot({
+MatSelectCaseModule.forRoot({
 
     maxWidthForMobileView: 600,
 
@@ -92,12 +92,12 @@ NgxMatSelectModule.forRoot({
 })
 ```
 
-or using token (NGX_MAT_SELECT_CONFIGS) in providers:
+or using token (MAT_SELECT_CASE_CONFIGS) in providers:
 
 ```
 providers: [
 
-{provide: NGX_MAT_SELECT_CONFIGS, useValue: ngxMatSelectConfigs}
+{provide: MAT_SELECT_CASE_CONFIGS, useValue: matSelectCaseConfigs}
 
 ],
 ```
@@ -113,7 +113,7 @@ Template:
 
     <mat-select
 
-        ngxMatSelect
+        matSelectCase
 
         [hasSearchBox]="true"
 
@@ -135,7 +135,7 @@ Template:
 
         [valueMember]="'key'"
 
-        #sf="ngxMatSelect"
+        #sf="matSelectCase"
 
     >
 
@@ -179,7 +179,7 @@ Template:
 
     <mat-select
 
-        ngxMatSelect
+        matSelectCase
 
         [hasSearchBox]="true"
 
@@ -201,7 +201,7 @@ Template:
 
         [valueMember]="'key'"
 
-        #sf="ngxMatSelect"
+        #sf="matSelectCase"
 
     >
 
@@ -246,7 +246,7 @@ Template:
 
     <mat-select
 
-        ngxMatSelect
+        matSelectCase
 
         [lazyLoad]="true"
 
@@ -272,7 +272,7 @@ Template:
 
         [valueMember]="'key'"
 
-        #sf="ngxMatSelect"
+        #sf="matSelectCase"
     >
 
         <mat-option [value]="option" \*ngFor="let option of sf.filteredSource">
@@ -478,7 +478,7 @@ less than value of maxWidthForMobileView,
 
 <td>any[]</td>
 
-<td>filtered data(you receive filtered records from 'NgxMatSelect' directive)</td>
+<td>filtered data(you receive filtered records from 'MatSelectCase' directive)</td>
 
 </tr>
 
